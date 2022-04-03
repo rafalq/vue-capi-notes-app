@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <TheNavbar />
- 
-    <RouterView />
-  </div>
+	<div>
+		<TheNavbar />
+		<div class="container is-max-desktop px-2 py-4">
+			<RouterView />
+		</div>
+	</div>
 </template>
 
 <script setup>
@@ -11,7 +12,7 @@
 imports
 */
 
-import TheNavbar from '@/components/layout/TheNavbar.vue'
+import TheNavbar from '@/components/layout/TheNavbar.vue';
 </script>
 
 <style>
