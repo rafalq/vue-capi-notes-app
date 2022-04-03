@@ -8,18 +8,19 @@
 			</div>
 			<div class="field is-grouped is-grouped-right">
 				<div class="control">
-					<button class="button is-link has-background-success">ADD NEW NOTE</button>
+					<button class="button is-link has-background-success">
+						ADD NEW NOTE
+					</button>
 				</div>
 			</div>
 		</div>
 
-		<div class="card mb-4" v-for="i in 3">
+		<div class="card mb-4" v-for="note in notes" :key="note.id">
 			<div class="card-content">
 				<div class="content">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-					iaculis mauris.
+					{{ note.content }}
 					<br />
-					<time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          <time>{{ note.createdAt }}</time>
 				</div>
 			</div>
 			<footer class="card-footer">
@@ -30,6 +31,36 @@
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+/* 
+  imports
+*/
+
+import { ref } from 'vue';
+
+/* 
+  notes
+*/
+
+const notes = ref([
+	{
+		id: 'id1',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
+    createdAt: new Date().toLocaleString(),
+	},
+	{
+		id: 'id2',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
+      createdAt: new Date().toLocaleString(),
+	},
+	{
+		id: 'id3',
+		content: 'Lorem ipsum dolor sit amet.',
+    createdAt: new Date().toLocaleString(),
+	},
+]);
+</script>
 
 <style scoped></style>
