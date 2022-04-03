@@ -1,7 +1,7 @@
 <template>
   <div>
-    <RouterLink to="/">Notes</RouterLink> |
-    <RouterLink to="/stats">Stats</RouterLink>
+    <RouterLink class="button" to="/">Notes</RouterLink>
+    <RouterLink class="button" to="/stats">Stats</RouterLink>
 
     <RouterView />
   </div>
@@ -11,6 +11,6 @@
 
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+@import 'bulma\css\bulma.min.css'
 </style>
