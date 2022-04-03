@@ -3,12 +3,21 @@
 		<div class="card has-background-success-dark p-4 mb-5">
 			<div class="field">
 				<div class="control">
-					<textarea class="textarea" placeholder="Add a new note" />
+					<textarea
+						v-model="newNote"
+            ref="newNoteRef"
+						class="textarea"
+						placeholder="Add a new note"
+					/>
 				</div>
 			</div>
 			<div class="field is-grouped is-grouped-right">
 				<div class="control">
-					<button class="button is-link has-background-success">
+					<button
+						@click="addNote"
+						class="button is-link has-background-success"
+						:disabled="!newNote"
+					>
 						ADD NEW NOTE
 					</button>
 				</div>
@@ -20,7 +29,7 @@
 				<div class="content">
 					{{ note.content }}
 					<br />
-          <time>{{ note.createdAt }}</time>
+					<time>{{ note.createdAt }}</time>
 				</div>
 			</div>
 			<footer class="card-footer">
@@ -41,26 +50,27 @@ import { ref } from 'vue';
 /* 
   notes
 */
+const newNote = ref('');
+const newNoteRef = ref(null);
 
 const notes = ref([
 	{
 		id: 'id1',
 		content:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-    createdAt: new Date().toLocaleString(),
-	},
-	{
-		id: 'id2',
-		content:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-      createdAt: new Date().toLocaleString(),
-	},
-	{
-		id: 'id3',
-		content: 'Lorem ipsum dolor sit amet.',
-    createdAt: new Date().toLocaleString(),
+		createdAt: new Date().toLocaleString(),
 	},
 ]);
+
+const addNote = () => {
+	notes.value.unshift({
+		id: Math.random().toString(),
+		content: newNote.value,
+		createdAt: new Date().toLocaleString(),
+	});
+	newNote.value = '';
+  newNoteRef.value.focus();
+};
 </script>
 
 <style scoped></style>
