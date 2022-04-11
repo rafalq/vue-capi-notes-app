@@ -5,7 +5,7 @@
 				<div class="control">
 					<textarea
 						v-model="newNote"
-            ref="newNoteRef"
+						ref="newNoteRef"
 						class="textarea"
 						placeholder="Add a new note"
 					/>
@@ -69,8 +69,13 @@ const addNote = () => {
 		createdAt: new Date().toLocaleString(),
 	});
 	newNote.value = '';
-  newNoteRef.value.focus();
+	newNoteRef.value.focus();
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.notes {
+	max-width: 34rem;
+	margin: 1rem auto;
+}
+</style>
