@@ -1,6 +1,8 @@
 <template>
 	<div class="notes">
-		<div class="card has-background-success-dark p-4 mb-5">
+		<div
+			class="card has-background-success-dark p-4 mb-5"
+		>
 			<div class="field">
 				<div class="control">
 					<textarea
@@ -11,7 +13,9 @@
 					/>
 				</div>
 			</div>
-			<div class="field is-grouped is-grouped-right">
+			<div
+				class="field is-grouped is-grouped-right"
+			>
 				<div class="control">
 					<button
 						@click="addNote"
@@ -23,24 +27,11 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="card mb-4" v-for="note in notes" :key="note.id">
-			<div class="card-content">
-				<div class="content">
-					{{ note.content }}
-					<br />
-					<small>
-						<time class="has-text-grey field is-grouped is-grouped-right">{{
-							note.createdAt
-						}}</time></small
-					>
-				</div>
-			</div>
-			<footer class="card-footer">
-				<a href="#" class="card-footer-item">Edit</a>
-				<a href="#" class="card-footer-item">Delete</a>
-			</footer>
-		</div>
+		<NoteItem
+			v-for="note in notes"
+			:key="note.id"
+			:note="note"
+		/>
 	</div>
 </template>
 
@@ -49,22 +40,32 @@
   imports
 */
 
-import { ref } from 'vue';
-import { uuid4 as uid } from 'uuid4';
-import moment from 'moment';
+import { ref } from "vue";
+
+import NoteItem from "@/components/notes/NoteItem.vue";
+
+import { uuid4 as uid } from "uuid4";
+import moment from "moment";
 
 /* 
   notes
 */
-const newNote = ref('');
+
+const newNote = ref("");
 const newNoteRef = ref(null);
 
 const notes = ref([
 	{
-		id: 'id1',
+		id: "id2",
 		content:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-		createdAt: moment('2019-01-01').fromNow(),
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
+		createdAt: moment("2022-03-01").fromNow(),
+	},
+	{
+		id: "id1",
+		content:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
+		createdAt: moment("2019-01-01").fromNow(),
 	},
 ]);
 
@@ -74,7 +75,7 @@ const addNote = () => {
 		content: newNote.value,
 		createdAt: moment(Date.now()).fromNow(),
 	});
-	newNote.value = '';
+	newNote.value = "";
 	newNoteRef.value.focus();
 };
 </script>
