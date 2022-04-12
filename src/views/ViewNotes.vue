@@ -31,6 +31,7 @@
 			v-for="note in notes"
 			:key="note.id"
 			:note="note"
+			@delete-clicked="deleteNote"
 		/>
 	</div>
 </template>
@@ -51,6 +52,7 @@ import moment from "moment";
   notes
 */
 
+// data
 const newNote = ref("");
 const newNoteRef = ref(null);
 
@@ -68,7 +70,7 @@ const notes = ref([
 		createdAt: moment("2019-01-01").fromNow(),
 	},
 ]);
-
+// methods
 const addNote = () => {
 	notes.value.unshift({
 		id: uid(),
@@ -77,6 +79,12 @@ const addNote = () => {
 	});
 	newNote.value = "";
 	newNoteRef.value.focus();
+};
+
+const deleteNote = (id) => {
+	notes.value = notes.value.filter(
+		(note) => note.id !== id
+	);
 };
 </script>
 
