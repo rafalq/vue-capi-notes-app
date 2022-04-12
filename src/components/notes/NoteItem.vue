@@ -24,13 +24,19 @@
 				>Edit</a
 			>
 			<a
-				@click.prevent="handleDeleteClicked"
+				@click.prevent="showModal = !showModal"
 				href="#"
-				class="card-footer-item has-background-danger-light has-text-danger"
+				class="js-modal-trigger card-footer-item has-background-danger-light has-text-danger"
+				data-target="delete-modal"
 				>Delete</a
 			>
 		</footer>
 	</div>
+	<DeleteModal
+		:showModal="showModal"
+		:note="note"
+		@cancelClicked="cancelDeletion"
+	/>
 </template>
 
 <script setup>
@@ -38,7 +44,9 @@
   imports
 */
 
-import { computed } from "vue";
+import { ref, computed } from "vue";
+
+import DeleteModal from "@/components/layout/DeleteModal.vue";
 
 /* 
     props
@@ -50,12 +58,6 @@ const props = defineProps({
 		required: true,
 	},
 });
-
-/* 
-    emits
-*/
-
-const emit = defineEmits(["delete-clicked"]);
 
 /* 
     character length 
@@ -70,12 +72,14 @@ const charLength = computed(() => {
 	return `${length} ${description}`;
 });
 
-/* 
-   handle delete clicked
+/*
+    modal
 */
 
-const handleDeleteClicked = () => {
-	emit("delete-clicked", props.note.id);
+const showModal = ref(false);
+
+const cancelDeletion = () => {
+	showModal.value = false;
 };
 </script>
 

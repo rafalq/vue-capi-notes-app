@@ -31,7 +31,6 @@
 			v-for="note in notes"
 			:key="note.id"
 			:note="note"
-			@delete-clicked="deleteNote"
 		/>
 	</div>
 </template>
@@ -41,7 +40,7 @@
   imports
 */
 
-import { ref } from "vue";
+import { provide, ref } from "vue";
 
 import NoteItem from "@/components/notes/NoteItem.vue";
 
@@ -52,7 +51,6 @@ import moment from "moment";
   notes
 */
 
-// data
 const newNote = ref("");
 const newNoteRef = ref(null);
 
@@ -70,7 +68,7 @@ const notes = ref([
 		createdAt: moment("2019-01-01").fromNow(),
 	},
 ]);
-// methods
+
 const addNote = () => {
 	notes.value.unshift({
 		id: uid(),
@@ -86,6 +84,8 @@ const deleteNote = (id) => {
 		(note) => note.id !== id
 	);
 };
+
+provide("handleDeleteClicked", deleteNote);
 </script>
 
 <style scoped>
