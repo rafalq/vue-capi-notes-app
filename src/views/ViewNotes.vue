@@ -29,7 +29,11 @@
 				<div class="content">
 					{{ note.content }}
 					<br />
-					<time>{{ note.createdAt }}</time>
+					<small>
+						<time class="has-text-grey field is-grouped is-grouped-right">{{
+							note.createdAt
+						}}</time></small
+					>
 				</div>
 			</div>
 			<footer class="card-footer">
@@ -47,6 +51,7 @@
 
 import { ref } from 'vue';
 import { uuid4 as uid } from 'uuid4';
+import moment from 'moment';
 
 /* 
   notes
@@ -59,7 +64,7 @@ const notes = ref([
 		id: 'id1',
 		content:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-		createdAt: new Date().toLocaleString(),
+		createdAt: moment('2019-01-01').fromNow(),
 	},
 ]);
 
@@ -67,7 +72,7 @@ const addNote = () => {
 	notes.value.unshift({
 		id: uid(),
 		content: newNote.value,
-		createdAt: new Date().toLocaleString(),
+		createdAt: moment(Date.now()).fromNow(),
 	});
 	newNote.value = '';
 	newNoteRef.value.focus();
