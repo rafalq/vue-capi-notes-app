@@ -46,6 +46,7 @@
 */
 
 import { ref } from 'vue';
+import { uuid4 as uid } from 'uuid4';
 
 /* 
   notes
@@ -64,7 +65,7 @@ const notes = ref([
 
 const addNote = () => {
 	notes.value.unshift({
-		id: Math.random().toString(),
+		id: uid(),
 		content: newNote.value,
 		createdAt: new Date().toLocaleString(),
 	});
