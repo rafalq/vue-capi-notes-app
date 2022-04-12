@@ -32,7 +32,7 @@
 			>
 		</footer>
 	</div>
-	<DeleteModal
+	<DeleteNote
 		:showModal="showModal"
 		:note="note"
 		@cancelClicked="cancelDeletion"
@@ -46,7 +46,7 @@
 
 import { ref, computed } from "vue";
 
-import DeleteModal from "@/components/layout/DeleteModal.vue";
+import DeleteNote from "@/components/notes/DeleteNote.vue";
 
 /* 
     props
