@@ -2,7 +2,7 @@
 	<div class="notes">
 		<AddNote @addClicked="addNote" />
 
-		<NoteItem
+		<ItemNote
 			v-for="note in notes"
 			:key="note.id"
 			:note="note"
@@ -17,7 +17,7 @@
 
 import { provide, ref } from "vue";
 
-import NoteItem from "@/components/notes/NoteItem.vue";
+import ItemNote from "@/components/notes/ItemNote.vue";
 import AddNote from "@/components/notes/AddNote.vue";
 
 import { uuid4 as uid } from "uuid4";
