@@ -3,7 +3,7 @@
 		<AddNote @addClicked="addNote" />
 
 		<ItemNote
-			v-for="note in notes"
+			v-for="note in notesStore.notes"
 			:key="note.id"
 			:note="note"
 		/>
@@ -15,32 +15,24 @@
   imports
 */
 
-import { provide, ref } from "vue";
+import { provide } from "vue";
+
+import { useNotesStore } from "@/stores/notesStore.js";
 
 import ItemNote from "@/components/notes/ItemNote.vue";
 import AddNote from "@/components/notes/AddNote.vue";
 
 import { uuid4 as uid } from "uuid4";
-import moment from "moment";
+
+/*
+  store
+*/
+
+const notesStore = useNotesStore();
 
 /* 
   notes
 */
-
-const notes = ref([
-	{
-		id: "id2",
-		content:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
-		createdAt: moment("2022-03-01").fromNow(),
-	},
-	{
-		id: "id1",
-		content:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
-		createdAt: moment("2019-01-01").fromNow(),
-	},
-]);
 
 const addNote = (noteContent) => {
 	notes.value.unshift({
