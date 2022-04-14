@@ -45,9 +45,7 @@ const addNote = (noteContent) => {
 };
 
 const deleteNote = (id) => {
-	notes.value = notes.value.filter(
-		(note) => note.id !== id
-	);
+	notesStore.deleteNote(id);
 };
 
 provide("handleDeleteClicked", deleteNote);
