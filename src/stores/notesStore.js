@@ -21,5 +21,10 @@ export const useNotesStore = defineStore('notesStore', {
       ]
     }
   },
-  
+  actions: {
+    addNote(note) {
+      this.notes.unshift(note)
+    }
+
+  }
 })

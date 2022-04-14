@@ -23,6 +23,7 @@ import ItemNote from "@/components/notes/ItemNote.vue";
 import AddNote from "@/components/notes/AddNote.vue";
 
 import { uuid4 as uid } from "uuid4";
+import moment from "moment";
 
 /*
   store
@@ -35,10 +36,11 @@ const notesStore = useNotesStore();
 */
 
 const addNote = (noteContent) => {
-	notes.value.unshift({
+
+	notesStore.addNote({
 		id: uid(),
 		content: noteContent,
-		createdAt: moment(Date.now()).fromNow(),
+		createdAt: moment(new Date()).fromNow(),
 	});
 };
 
