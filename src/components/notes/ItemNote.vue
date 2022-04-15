@@ -32,11 +32,13 @@
 			>
 		</footer>
 	</div>
-	<DeleteNote
-		:showModal="showModal"
-		:note="note"
-		@cancelClicked="cancelDeletion"
-	/>
+	<transition>
+		<DeleteNote
+			v-if="showModal"
+			:note="note"
+			@cancelClicked="cancelDeletion"
+		/>
+	</transition>
 </template>
 
 <script setup>
@@ -83,4 +85,34 @@ const cancelDeletion = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+	.v-enter-from {
+		display: none;
+    	opacity: 0;
+    	height: 0;
+	}
+
+	.v-enter-active {
+		transition: all 0.3s ease-in-out;
+	}
+
+	.v-enter-to {
+		opacity: 1;
+    	height: 100%;
+	}
+
+	.v-leave-from {
+		opacity: 1;
+    	height: 100%;
+	}
+
+	.v-leave-active {
+		transition: all 0.3s ease-in;
+	}
+
+	.v-leave-to {
+		display: none;
+    	opacity: 0;
+    	height: 0;
+	}
+</style>
