@@ -34,12 +34,13 @@
 */
 
 import { ref } from "vue";
+import { useNotesStore } from "@/stores/notesStore.js";
 
 /*
-    emits
+  store
 */
 
-const emit = defineEmits(["addClicked"]);
+const notesStore = useNotesStore();
 
 /*
     note
@@ -53,7 +54,7 @@ const newNoteRef = ref(null);
 */
 
 const clickAddHandler = () => {
-	emit("addClicked", newNote.value);
+	notesStore.addNote(newNote.value);
 	newNote.value = "";
 	newNoteRef.value.focus();
 };
