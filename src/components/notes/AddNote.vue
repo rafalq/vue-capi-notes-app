@@ -1,19 +1,21 @@
 <template>
-	<FormBase
-		v-model="newNote"
-		ref="addEditNoteRef"
-		placeholder="Add a new note..."
-	>
-		<template v-slot:buttons>
-			<button
-				class="button is-success"
-				@click="clickAddHandler"
-				:disabled="!newNote"
-			>
-				ADD NEW NOTE
-			</button>
-		</template>
-	</FormBase>
+	<div class="add-note">
+		<NoteForm
+			v-model="newNote"
+			ref="addEditNoteRef"
+			placeholder="Add a new note..."
+		>
+			<template v-slot:buttons>
+				<button
+					class="button is-success"
+					@click="clickAddHandler"
+					:disabled="!newNote"
+				>
+					ADD NEW NOTE
+				</button>
+			</template>
+		</NoteForm>
+	</div>
 </template>
 
 <script setup>
@@ -23,7 +25,7 @@
 
 import { ref } from "vue";
 import { useNotesStore } from "@/stores/notesStore.js";
-import FormBase from "@/components/ui/FormBase.vue";
+import NoteForm from "@/components/ui/NoteForm.vue";
 
 /*
   store

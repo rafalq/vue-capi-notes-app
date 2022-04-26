@@ -1,41 +1,43 @@
 <template>
-	<div class="card mb-4">
-		<div class="card-content">
-			<div class="content">
-				<div
-					class="has-text-right has-text-success mb-2"
-				>
-					<small>{{ charLength }}</small>
-				</div>
-				{{ note.content }}
-				<div class="mt-2 has-text-grey">
-					<small>
-						<time>
-							{{ note.createdAt }}
-						</time>
-					</small>
+	<div class="item-note">
+		<div class="card mb-4">
+			<div class="card-content">
+				<div class="content">
+					<div
+						class="has-text-right has-text-success mb-2"
+					>
+						<small>{{ charLength }}</small>
+					</div>
+					{{ note.content }}
+					<div class="mt-2 has-text-grey">
+						<small>
+							<time>
+								{{ note.createdAt }}
+							</time>
+						</small>
+					</div>
 				</div>
 			</div>
+			<footer class="card-footer">
+				<a
+					@click.prevent="
+						showEditModal = !showEditModal
+					"
+					href="#"
+					class="card-footer-item has-background-info-light"
+					>Edit</a
+				>
+				<a
+					@click.prevent="
+						showDeleteModal = !showDeleteModal
+					"
+					href="#"
+					class="js-modal-trigger card-footer-item has-background-danger-light has-text-danger"
+					data-target="delete-modal"
+					>Delete</a
+				>
+			</footer>
 		</div>
-		<footer class="card-footer">
-			<a
-				@click.prevent="
-					showEditModal = !showEditModal
-				"
-				href="#"
-				class="card-footer-item has-background-info-light"
-				>Edit</a
-			>
-			<a
-				@click.prevent="
-					showDeleteModal = !showDeleteModal
-				"
-				href="#"
-				class="js-modal-trigger card-footer-item has-background-danger-light has-text-danger"
-				data-target="delete-modal"
-				>Delete</a
-			>
-		</footer>
 	</div>
 	<transition>
 		<DeleteNote
