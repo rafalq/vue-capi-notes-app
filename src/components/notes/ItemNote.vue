@@ -80,8 +80,13 @@ const props = defineProps({
 
 const charLength = computed(() => {
 	let text = props.note.content;
-	let textNoSpaces = text.replace(/\s/g, "");
-	let length = textNoSpaces.length;
+	// remove spaces from the word to exclude them from the length
+	// let textNoSpaces = text.replace(/\s/g, "");
+	// let length = textNoSpaces.length;
+	if (text.trim().length === 0) {
+		return text;
+	}
+	let length = text.trim().length;
 	let description =
 		length === 1 ? "character" : "characters";
 	return `${length} ${description}`;
@@ -111,31 +116,27 @@ const cancelEdit = () => {
 <style scoped>
 .v-enter-from {
 	display: none;
-	opacity: 0;
 	height: 0;
 }
 
 .v-enter-active {
-	transition: all 0.3s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 
 .v-enter-to {
-	opacity: 1;
 	height: 100%;
 }
 
 .v-leave-from {
-	opacity: 1;
 	height: 100%;
 }
 
 .v-leave-active {
-	transition: all 0.3s ease-in;
+	transition: all 0.2s linear;
 }
 
 .v-leave-to {
 	display: none;
-	opacity: 0;
 	height: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<AddEditNoteBase
+	<FormBase
 		v-model="newNote"
 		ref="addEditNoteRef"
 		placeholder="Add a new note..."
@@ -13,7 +13,7 @@
 				ADD NEW NOTE
 			</button>
 		</template>
-	</AddEditNoteBase>
+	</FormBase>
 </template>
 
 <script setup>
@@ -23,7 +23,7 @@
 
 import { ref } from "vue";
 import { useNotesStore } from "@/stores/notesStore.js";
-import AddEditNoteBase from "@/components/notes/ui/AddEditNoteBase.vue";
+import FormBase from "@/components/ui/FormBase.vue";
 
 /*
   store

@@ -29,7 +29,7 @@
 
 			<div
 				id="navbarBasicExample"
-				class="navbar-menu"
+				class="navbar-menu p-0"
 				:class="{ 'is-active': showMobileNav }"
 			>
 				<div class="navbar-end">
@@ -73,9 +73,23 @@ const showMobileNav = ref(false);
 <style scoped>
 @media (max-width: 1023px) {
 	.navbar-menu {
-		position: absolute;
+		display: block;
+		opacity: 0;
+
+		position: absolute; /* or float: left; width: 100%;*/
+		z-index: 1;
 		left: 0;
-		width: 100%;
+		right: 0;
+
+		transform: translateY(-50%);
+		transition: all 0.2s linear;
+		pointer-events: none;
+	}
+
+	.navbar-menu.is-active {
+		opacity: 1;
+		transform: none;
+		pointer-events: auto;
 	}
 }
 </style>

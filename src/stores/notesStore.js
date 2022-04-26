@@ -58,6 +58,16 @@ export const useNotesStore = defineStore(
 					).content;
 				};
 			},
+
+			totalNotesCount: (state) => {
+				return state.notes.length;
+			},
+
+			totalCharactersCount: (state) => {
+				return state.notes.reduce((acc, note) => {
+					return acc + note.content.length;
+				}, 0);
+			},
 		},
 	}
 );

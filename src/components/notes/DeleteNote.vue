@@ -1,5 +1,5 @@
 <template>
-	<div id="delete-modal" class="modal">
+	<div id="delete-note" class="modal">
 		<div
 			@click.self="handleCancelClicked"
 			class="modal-background"
@@ -27,7 +27,7 @@
 						@click.prevent="deleteNote"
 						href="#"
 						class="js-modal-trigger card-footer-item has-background-danger-light has-text-danger"
-						data-target="delete-modal"
+						data-target="delete-note.modal"
 						>Delete</a
 					>
 				</footer>
@@ -90,7 +90,14 @@ const handleCancelClicked = () => {
 </script>
 
 <style scoped>
-#delete-modal {
-	display: flex;
+#delete-note.modal {
+	display: block;
+}
+
+.modal-content {
+	max-width: 34rem;
+	margin-top: 74px;
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
