@@ -1,12 +1,7 @@
 <template>
-	<div class="notes">
+	<div class="notes-view">
 		<AddNote />
-
-		<ItemNote
-			v-for="note in notesStore.notes"
-			:key="note.id"
-			:note="note"
-		/>
+		<ListNote />
 	</div>
 </template>
 
@@ -15,20 +10,12 @@
   imports
 */
 
-import { useNotesStore } from "@/stores/notesStore.js";
-
-import ItemNote from "@/components/notes/ItemNote.vue";
+import ListNote from "@/components/notes/ListNote.vue";
 import AddNote from "@/components/notes/AddNote.vue";
-
-/*
-  store
-*/
-
-const notesStore = useNotesStore();
 </script>
 
 <style scoped>
-.notes {
+.notes-view {
 	max-width: 34rem;
 	margin: 1rem auto;
 }

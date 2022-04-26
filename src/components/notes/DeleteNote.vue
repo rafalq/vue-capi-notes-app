@@ -1,6 +1,9 @@
 <template>
 	<div id="delete-modal" class="modal">
-		<div class="modal-background"></div>
+		<div
+			@click.self="handleCancelClicked"
+			class="modal-background"
+		></div>
 		<div class="modal-content">
 			<div class="card mb-4">
 				<div class="card-content">

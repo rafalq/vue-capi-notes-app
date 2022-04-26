@@ -19,12 +19,17 @@
 		</div>
 		<footer class="card-footer">
 			<a
+				@click.prevent="
+					showEditModal = !showEditModal
+				"
 				href="#"
 				class="card-footer-item has-background-info-light"
 				>Edit</a
 			>
 			<a
-				@click.prevent="showModal = !showModal"
+				@click.prevent="
+					showDeleteModal = !showDeleteModal
+				"
 				href="#"
 				class="js-modal-trigger card-footer-item has-background-danger-light has-text-danger"
 				data-target="delete-modal"
@@ -34,9 +39,16 @@
 	</div>
 	<transition>
 		<DeleteNote
-			v-if="showModal"
+			v-if="showDeleteModal"
 			:note="note"
 			@cancelClicked="cancelDeletion"
+		/>
+	</transition>
+	<transition>
+		<EditNote
+			v-if="showEditModal"
+			:note="note"
+			@cancelEditClicked="cancelEdit"
 		/>
 	</transition>
 </template>
@@ -49,6 +61,7 @@
 import { ref, computed } from "vue";
 
 import DeleteNote from "@/components/notes/DeleteNote.vue";
+import EditNote from "@/components/notes/EditNote.vue";
 
 /* 
     props
@@ -75,44 +88,54 @@ const charLength = computed(() => {
 });
 
 /*
-    modal
+   delete modal
 */
 
-const showModal = ref(false);
+const showDeleteModal = ref(false);
 
 const cancelDeletion = () => {
-	showModal.value = false;
+	showDeleteModal.value = false;
+};
+
+/*
+   edit modal
+*/
+
+const showEditModal = ref(false);
+
+const cancelEdit = () => {
+	showEditModal.value = false;
 };
 </script>
 
 <style scoped>
-	.v-enter-from {
-		display: none;
-    	opacity: 0;
-    	height: 0;
-	}
+.v-enter-from {
+	display: none;
+	opacity: 0;
+	height: 0;
+}
 
-	.v-enter-active {
-		transition: all 0.3s ease-in-out;
-	}
+.v-enter-active {
+	transition: all 0.3s ease-in-out;
+}
 
-	.v-enter-to {
-		opacity: 1;
-    	height: 100%;
-	}
+.v-enter-to {
+	opacity: 1;
+	height: 100%;
+}
 
-	.v-leave-from {
-		opacity: 1;
-    	height: 100%;
-	}
+.v-leave-from {
+	opacity: 1;
+	height: 100%;
+}
 
-	.v-leave-active {
-		transition: all 0.3s ease-in;
-	}
+.v-leave-active {
+	transition: all 0.3s ease-in;
+}
 
-	.v-leave-to {
-		display: none;
-    	opacity: 0;
-    	height: 0;
-	}
+.v-leave-to {
+	display: none;
+	opacity: 0;
+	height: 0;
+}
 </style>

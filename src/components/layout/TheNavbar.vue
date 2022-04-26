@@ -1,10 +1,19 @@
 <template>
-	<nav class="navbar is-success" role="navigation" aria-label="main navigation">
+	<nav
+		class="navbar is-success"
+		role="navigation"
+		aria-label="main navigation"
+	>
 		<div class="container is-max-desktop px-2">
 			<div class="navbar-brand">
-				<span class="navbar-item is-size-4 is-family-monospace">NoteBalls</span>
+				<span
+					class="navbar-item is-size-4 is-family-monospace"
+					>NoteBalls</span
+				>
 				<a
-					@click.prevent="showMobileNav = !showMobileNav"
+					@click.prevent="
+						showMobileNav = !showMobileNav
+					"
 					role="button"
 					class="navbar-burger"
 					:class="{ 'is-active': showMobileNav }"
@@ -52,7 +61,7 @@
   imports
 */
 
-import { ref } from 'vue';
+import { ref } from "vue";
 
 /*
   mobile nav
