@@ -25,6 +25,7 @@
 
 import { ref } from "vue";
 import { useNotesStore } from "@/stores/notesStore.js";
+
 import NoteForm from "@/components/ui/NoteForm.vue";
 
 /*
@@ -45,6 +46,12 @@ const addEditNoteRef = ref(null);
 */
 
 const clickAddHandler = () => {
+	if (newNote.value.trim() === "") {
+		alert("Note cannot be empty");
+		newNote.value = "";
+		addEditNoteRef.value.focusTextarea();
+		return;
+	}
 	notesStore.addNote(newNote.value);
 	newNote.value = "";
 	addEditNoteRef.value.focusTextarea();

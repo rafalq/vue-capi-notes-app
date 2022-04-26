@@ -18,14 +18,12 @@
 				</div>
 				<footer class="card-footer">
 					<a
-						href="#"
 						class="card-footer-item has-background-grey-light has-text-black"
 						@click.prevent="handleCancelClicked"
 						>Cancel</a
 					>
 					<a
 						@click.prevent="deleteNote"
-						href="#"
 						class="js-modal-trigger card-footer-item has-background-danger-light has-text-danger"
 						data-target="delete-note.modal"
 						>Delete</a

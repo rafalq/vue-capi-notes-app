@@ -19,4 +19,10 @@ import TheNavbar from "@/components/layout/TheNavbar.vue";
 
 <style>
 @import "bulma\css\bulma.min.css";
+
+html {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	hyphens: auto;
+}
 </style>

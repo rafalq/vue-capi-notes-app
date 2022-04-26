@@ -75,9 +75,7 @@ const showMobileNav = ref(false);
 	.navbar-menu {
 		display: block;
 		opacity: 0;
-
 		position: absolute; /* or float: left; width: 100%;*/
-		z-index: 1;
 		left: 0;
 		right: 0;
 

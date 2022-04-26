@@ -8,7 +8,7 @@
 					>
 						<small>{{ charLength }}</small>
 					</div>
-					{{ note.content }}
+					<p>{{ note.content }}</p>
 					<div class="mt-2 has-text-grey">
 						<small>
 							<time>
@@ -122,7 +122,7 @@ const cancelEdit = () => {
 }
 
 .v-enter-active {
-	transition: all 0.2s ease-in-out;
+	transition: all 0.2s linear;
 }
 
 .v-enter-to {
