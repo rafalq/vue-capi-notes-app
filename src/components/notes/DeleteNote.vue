@@ -63,6 +63,10 @@ const props = defineProps({
 
 const emit = defineEmits(["cancelClicked"]);
 
+const handleCancelClicked = () => {
+	emit("cancelClicked");
+};
+
 /*
   store
 */
@@ -70,20 +74,12 @@ const emit = defineEmits(["cancelClicked"]);
 const notesStore = useNotesStore();
 
 /* 
-  delete note
+	STORE -->  delete note
 */
 
 const deleteNote = () => {
 	notesStore.deleteNote(props.note.id);
 	handleCancelClicked();
-};
-
-/* 
-   handle cancel clicked
-*/
-
-const handleCancelClicked = () => {
-	emit("cancelClicked");
 };
 </script>
 

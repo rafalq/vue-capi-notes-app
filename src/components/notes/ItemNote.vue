@@ -21,7 +21,8 @@
 			<footer class="card-footer">
 				<a
 					@click.prevent="
-						showEditModal = !showEditModal
+						modals.showEditModal =
+							!modals.showEditModal
 					"
 					href="#"
 					class="card-footer-item has-background-info-light"
@@ -29,7 +30,8 @@
 				>
 				<a
 					@click.prevent="
-						showDeleteModal = !showDeleteModal
+						modals.showDeleteModal =
+							!modals.showDeleteModal
 					"
 					href="#"
 					class="js-modal-trigger card-footer-item has-background-danger-light has-text-danger"
@@ -41,14 +43,14 @@
 	</div>
 	<transition>
 		<DeleteNote
-			v-if="showDeleteModal"
+			v-if="modals.showDeleteModal"
 			:note="note"
 			@cancelClicked="cancelDeletion"
 		/>
 	</transition>
 	<transition>
 		<EditNote
-			v-if="showEditModal"
+			v-if="modals.showEditModal"
 			:note="note"
 			@cancelEditClicked="cancelEdit"
 		/>
@@ -60,7 +62,7 @@
   imports
 */
 
-import { ref, computed } from "vue";
+import { reactive, computed } from "vue";
 
 import DeleteNote from "@/components/notes/DeleteNote.vue";
 import EditNote from "@/components/notes/EditNote.vue";
@@ -82,9 +84,16 @@ const props = defineProps({
 
 const charLength = computed(() => {
 	let text = props.note.content;
-	// remove spaces from the word to exclude them from the length
-	// let textNoSpaces = text.replace(/\s/g, "");
-	// let length = textNoSpaces.length;
+	/* 
+
+	remove spaces from the word 
+	to exclude them from the length 
+
+	let textNoSpaces = text.replace(/\s/g, "");
+	let length = textNoSpaces.length;
+
+	*/
+
 	if (text.trim().length === 0) {
 		return text;
 	}
@@ -95,23 +104,20 @@ const charLength = computed(() => {
 });
 
 /*
-   delete modal
+	 modals 
 */
 
-const showDeleteModal = ref(false);
-
-const cancelDeletion = () => {
-	showDeleteModal.value = false;
-};
-
-/*
-   edit modal
-*/
-
-const showEditModal = ref(false);
+const modals = reactive({
+	showEditModal: false,
+	showDeleteModal: false,
+});
 
 const cancelEdit = () => {
-	showEditModal.value = false;
+	modals.showEditModal = false;
+};
+
+const cancelDeletion = () => {
+	modals.showDeleteModal = false;
 };
 </script>
 
